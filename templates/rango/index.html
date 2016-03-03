@@ -1,19 +1,21 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load staticfiles %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Rango</title>
-</head>
-<body>
-<h1>Invalid access</h1>
+{% block title %}Lucido Dream:  Home page{% endblock %}
+{% block body_block %}
+{% if user.is_authenticated %}
+<h1>Index  {{ user.username }}!</h1>
+{% else %}
+<h1>Index...  !</h1>
+{% endif %}
+<h1>Top 5 category</h1>
 <!--<strong>{{ boldmessage }}</strong><br />-->
 <!--<a href="/rango/about/">About</a><br/>-->
 <!--<img src="{% static "images/rango.jpg" %}" alt="picture of rango" />-->
+
 {% if categories %}
 <ul>
-    {% for category in categories%}
-    <li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a>
+    {% for category in categories %}
+    <li><a href="{% url 'category' category.slug %}">{{ category.name }}</a>
     </li>
     {% endfor %}
 </ul>
@@ -31,7 +33,7 @@
 {% else %}
 <strong>Not currently available</strong>
 {% endif %}
-<a href="/rango/about/">About</a>
-<!-- new line -->
-</body>
-</html>
+
+<p> visits: {{ visits }}</p>
+
+{% endblock %}

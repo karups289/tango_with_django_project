@@ -1,15 +1,12 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load staticfiles %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>About page</title>
-</head>
-<body>
+
+{% block title %}Lucido Dream:  About page{% endblock %}
+{% block body_block %}
  <h1>Invalid access</h1>
         <strong>{{ boldmessage }}</strong><br />
-        <a href="/rango/">Index</a><br/>
+        <a href="{% url 'index' %}">Index</a><br/>
     <img src="{% static "images/rango.jpg" %}" alt="picture of rango" />
     <!-- new line -->
-</body>
-</html>
+    <div>Visits:{{ visits }}</div>
+{% endblock %}
